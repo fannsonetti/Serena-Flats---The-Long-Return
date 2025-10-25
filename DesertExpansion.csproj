@@ -1,0 +1,72 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+        <TargetFramework>net6</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+	    <LangVersion>10.0</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+        <PackageReference Include="LavaGang.MelonLoader" Version="0.7.0" />
+        <PackageReference Include="Lib.Harmony" Version="2.3.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="0Harmony">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\net6\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>libs\Assembly-CSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="FishNet.Runtime">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Dependencies\Il2CppAssemblyGenerator\Cpp2IL\cpp2il_out\FishNet.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppFishNet.Runtime">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\Il2CppFishNet.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.Runtime">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2Cppmscorlib">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSystem">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
+		</Reference>
+		<Reference Include="MelonLoader">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\net6\MelonLoader.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.AI.Navigation">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\Unity.AI.Navigation.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AIModule">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.AIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.InputLegacyModule">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.PhysicsModule">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TerrainModule">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.TerrainModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TerrainPhysicsModule">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UI">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UIModule">
+		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+</Project>
