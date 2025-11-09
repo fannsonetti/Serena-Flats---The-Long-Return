@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using MelonLoader;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,15 +15,15 @@ public static class OverpassModule
     private static MelonPreferences_Entry<bool> debugEnabled;
 
     // Reference paths in the live scene (used for transform context / cleanup)
-    private const string OverpassRootPath = "Map/Container/Overpass";
-    private const string OverpassRampParentForCollider = "Map/Container/Overpass/Overpass Ramp/overpass_ramp";
+    private const string OverpassRootPath = "Map/Hyland Point/Overpass";
+    private const string OverpassRampParentForCollider = "Map/Hyland Point/Overpass/Overpass Ramp/overpass_ramp";
 
     private static readonly string[] RoadblockerTargets =
     {
-        "Map/Container/Overpass/Overpass Ramp/RoadBlocker4_LOD (1)",
-        "Map/Container/Overpass/Overpass Ramp/RoadBlocker4_LOD (2)",
-        "Map/Container/Overpass/Overpass Ramp/RoadBlocker4_LOD (3)",
-        "Map/Container/Overpass/Overpass Ramp/RoadBlocker4_LOD (4)"
+        "Map/Hyland Point/Overpass/Overpass Ramp/RoadBlocker4_LOD (1)",
+        "Map/Hyland Point/Overpass/Overpass Ramp/RoadBlocker4_LOD (2)",
+        "Map/Hyland Point/Overpass/Overpass Ramp/RoadBlocker4_LOD (3)",
+        "Map/Hyland Point/Overpass/Overpass Ramp/RoadBlocker4_LOD (4)"
     };
 
     private static readonly Color[] BrightPalette =
