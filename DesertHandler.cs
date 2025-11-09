@@ -27,7 +27,7 @@ public static class DesertModule
         if (desertLoaded) return;
         if (!string.Equals(sceneName, TargetSceneName, System.StringComparison.OrdinalIgnoreCase)) return;
 
-        MelonLogger.Msg($"[Desert] Scene '{sceneName}' loaded — waiting {delayBeforeLoad} seconds before load…");
+        MelonLogger.Msg($"[Desert] Scene '{sceneName}' loaded â€” waiting {delayBeforeLoad} seconds before loadâ€¦");
         MelonCoroutines.Start(DelayedStart());
     }
 
@@ -50,7 +50,7 @@ public static class DesertModule
         TryRemoveBlockingMMapComponents("[Desert]");
 
         // load donor scene additively
-        MelonLogger.Msg($"[Desert] Loading '{DonorSceneName}' additively…");
+        MelonLogger.Msg($"[Desert] Loading '{DonorSceneName}' additivelyâ€¦");
         var loadOp = SceneManager.LoadSceneAsync(DonorSceneName, LoadSceneMode.Additive);
         if (loadOp == null)
         {
@@ -320,13 +320,13 @@ public static class DesertModule
             return;
         }
 
-        // Resolve Map/Container/EdgePoint & OriginPoint
+        // Resolve Map/Hyland Point/EdgePoint & OriginPoint
         Transform container = mmap.transform.Find("Container");
         Transform edgePoint = container ? container.Find("EdgePoint") : null;
         Transform originPoint = container ? container.Find("OriginPoint") : null;
-        if (container == null) MelonLogger.Warning($"{tag} 'Map/Container' not found.");
-        if (edgePoint == null) MelonLogger.Warning($"{tag} 'Map/Container/EdgePoint' not found.");
-        if (originPoint == null) MelonLogger.Warning($"{tag} 'Map/Container/OriginPoint' not found.");
+        if (container == null) MelonLogger.Warning($"{tag} 'Map=' not found.");
+        if (edgePoint == null) MelonLogger.Warning($"{tag} 'Map/EdgePoint' not found.");
+        if (originPoint == null) MelonLogger.Warning($"{tag} 'Map/OriginPoint' not found.");
 
         // Use IL2CPP generic overloads to avoid System.Type vs Il2CppSystem.Type mismatch
         Il2CppScheduleOne.Map.MapPositionUtility mpu = null;
