@@ -1,0 +1,27 @@
+.idea/
+*.dll
+*.zip
+obj/
+bin/
+*.user
+.vs/
+
+# Build props
+local.*
+ci.*
+
+# Local assembly references
+### TODO: ScheduleOneAssemblies is deprecated and needs removed after communications
+ScheduleOneAssemblies/
+*.bin
+
+nuget-upload.txt
+AGENTS.md
+
+# DocFX
+**/S1API/_site/
+**/S1API/api/
+**/S1API/.docfx/
+**/.docfx/
+**/docfx.json.bak
+**/xrefmap.yml
