@@ -1,72 +1,174 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
-        <TargetFramework>net6</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>disable</Nullable>
-	    <LangVersion>10.0</LangVersion>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>DesertExpansion</RootNamespace>
+		<LangVersion>10.0</LangVersion>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<Nullable>disable</Nullable>
+		<Configurations>Mono;Il2cpp</Configurations>
+	</PropertyGroup>
+
+	<!-- Define paths for different configurations -->
+	<PropertyGroup Condition="'$(Configuration)'=='Mono'">
+		<!-- Base directory where the Mono game is installed. Can be overridden via Directory.Build.props -->
+		<ScheduleIGameDirMono Condition="'$(ScheduleIGameDirMono)' == ''">$(SCHEDULE_I_GAME_DIR_MONO)</ScheduleIGameDirMono>
+		<ScheduleIGameDirMono Condition="'$(ScheduleIGameDirMono)' == ''">D:\SteamLibrary\steamapps\common\Schedule I_alternate</ScheduleIGameDirMono>
+		
+		<GamePath>$(ScheduleIGameDirMono)</GamePath>
+		<ManagedPath>$(GamePath)\Schedule I_Data\Managed</ManagedPath>
+		<MelonLoaderPath>$(GamePath)\MelonLoader\net35</MelonLoaderPath>
+		<ModsPath>$(GamePath)\Mods</ModsPath>
+		<DefineConstants>MONO</DefineConstants>
+		<AssemblyName>DesertExpansion_Mono</AssemblyName>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Il2cpp'">
+		<TargetFramework>net6.0</TargetFramework>
+		<!-- Base directory where the Il2cpp game is installed. Can be overridden via Directory.Build.props -->
+		<ScheduleIGameDirIl2cpp Condition="'$(ScheduleIGameDirIl2cpp)' == ''">$(SCHEDULE_I_GAME_DIR_IL2CPP)</ScheduleIGameDirIl2cpp>
+		<ScheduleIGameDirIl2cpp Condition="'$(ScheduleIGameDirIl2cpp)' == ''">D:\SteamLibrary\steamapps\common\Schedule I_public</ScheduleIGameDirIl2cpp>
+		
+		<GamePath>$(ScheduleIGameDirIl2cpp)</GamePath>
+		<ManagedPath>$(GamePath)\MelonLoader\Il2CppAssemblies</ManagedPath>
+		<MelonLoaderPath>$(GamePath)\MelonLoader\net6</MelonLoaderPath>
+		<ModsPath>$(GamePath)\Mods</ModsPath>
+		<DefineConstants>IL2CPP</DefineConstants>
+		<AssemblyName>DesertExpansion_Il2cpp</AssemblyName>
 	</PropertyGroup>
 
 	<ItemGroup>
-        <PackageReference Include="LavaGang.MelonLoader" Version="0.7.0" />
-        <PackageReference Include="Lib.Harmony" Version="2.3.5" />
+		<PackageReference Include="LavaGang.MelonLoader" Version="0.7.0" />
+		<PackageReference Include="Lib.Harmony" Version="2.3.5" />
+	</ItemGroup>
+
+	<!-- Mono references -->
+	<ItemGroup Condition="'$(Configuration)'=='Mono'">
+		<Reference Include="Assembly-CSharp-firstpass">
+			<HintPath>$(ManagedPath)\Assembly-CSharp-firstpass.dll</HintPath>
+		</Reference>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(ManagedPath)\Assembly-CSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="FishNet.Runtime">
+			<HintPath>$(ManagedPath)\FishNet.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="MelonLoader">
+			<HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
+		</Reference>
+		<Reference Include="0Harmony">
+			<HintPath>$(MelonLoaderPath)\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.AI.Navigation">
+			<HintPath>$(ManagedPath)\Unity.AI.Navigation.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(ManagedPath)\UnityEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AIModule">
+			<HintPath>$(ManagedPath)\UnityEngine.AIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(ManagedPath)\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.InputLegacyModule">
+			<HintPath>$(ManagedPath)\UnityEngine.InputLegacyModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.PhysicsModule">
+			<HintPath>$(ManagedPath)\UnityEngine.PhysicsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TerrainModule">
+			<HintPath>$(ManagedPath)\UnityEngine.TerrainModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TerrainPhysicsModule">
+			<HintPath>$(ManagedPath)\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UI">
+			<HintPath>$(ManagedPath)\UnityEngine.UI.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UIModule">
+			<HintPath>$(ManagedPath)\UnityEngine.UIModule.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<!-- Il2cpp references -->
+	<ItemGroup Condition="'$(Configuration)'=='Il2cpp'">
+		<Reference Include="Assembly-CSharp-firstpass">
+			<HintPath>$(ManagedPath)\Assembly-CSharp-firstpass.dll</HintPath>
+		</Reference>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(ManagedPath)\Assembly-CSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="FishNet.Runtime">
+			<HintPath>$(GamePath)\MelonLoader\Dependencies\Il2CppAssemblyGenerator\Cpp2IL\cpp2il_out\FishNet.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppFishNet.Runtime">
+			<HintPath>$(ManagedPath)\Il2CppFishNet.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.Runtime">
+			<HintPath>$(MelonLoaderPath)\Il2CppInterop.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2Cppmscorlib">
+			<HintPath>$(ManagedPath)\Il2Cppmscorlib.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSystem">
+			<HintPath>$(ManagedPath)\Il2CppSystem.dll</HintPath>
+		</Reference>
+		<Reference Include="MelonLoader">
+			<HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
+		</Reference>
+		<Reference Include="0Harmony">
+			<HintPath>$(MelonLoaderPath)\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.AI.Navigation">
+			<HintPath>$(ManagedPath)\Unity.AI.Navigation.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(ManagedPath)\UnityEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AIModule">
+			<HintPath>$(ManagedPath)\UnityEngine.AIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(ManagedPath)\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.InputLegacyModule">
+			<HintPath>$(ManagedPath)\UnityEngine.InputLegacyModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.PhysicsModule">
+			<HintPath>$(ManagedPath)\UnityEngine.PhysicsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TerrainModule">
+			<HintPath>$(ManagedPath)\UnityEngine.TerrainModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TerrainPhysicsModule">
+			<HintPath>$(ManagedPath)\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UI">
+			<HintPath>$(ManagedPath)\UnityEngine.UI.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UIModule">
+			<HintPath>$(ManagedPath)\UnityEngine.UIModule.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="0Harmony">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\net6\0Harmony.dll</HintPath>
-		</Reference>
-		<Reference Include="Assembly-CSharp">
-			<HintPath>libs\Assembly-CSharp.dll</HintPath>
-		</Reference>
-		<Reference Include="FishNet.Runtime">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Dependencies\Il2CppAssemblyGenerator\Cpp2IL\cpp2il_out\FishNet.Runtime.dll</HintPath>
-		</Reference>
-		<Reference Include="Il2CppFishNet.Runtime">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\Il2CppFishNet.Runtime.dll</HintPath>
-		</Reference>
-		<Reference Include="Il2CppInterop.Runtime">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
-		</Reference>
-		<Reference Include="Il2Cppmscorlib">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
-		</Reference>
-		<Reference Include="Il2CppSystem">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
-		</Reference>
-		<Reference Include="MelonLoader">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\net6\MelonLoader.dll</HintPath>
-		</Reference>
-		<Reference Include="Unity.AI.Navigation">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\Unity.AI.Navigation.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.AIModule">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.AIModule.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.CoreModule">
-			<HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.InputLegacyModule">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.PhysicsModule">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.TerrainModule">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.TerrainModule.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.TerrainPhysicsModule">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.TerrainPhysicsModule.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.UI">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.UIModule">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Schedule I\MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath>
-		</Reference>
+		<Compile Include="Main.cs" />
+		<Compile Include="DesertHandler.cs" />
+		<Compile Include="OverpassHandler.cs" />
 	</ItemGroup>
 
+	<PropertyGroup>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Directory.Build.props.sample" />
+		<None Remove="Utils\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Remove="Utils\**" />
+	</ItemGroup>
 </Project>

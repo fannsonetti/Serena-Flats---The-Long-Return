@@ -11,8 +11,7 @@ local.*
 ci.*
 
 # Local assembly references
-### TODO: ScheduleOneAssemblies is deprecated and needs removed after communications
-ScheduleOneAssemblies/
+Directory.Build.props
 *.bin
 
 nuget-upload.txt
