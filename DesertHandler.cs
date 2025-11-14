@@ -5,6 +5,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
+#if MONO
+using ScheduleOne.Map;
+#else
+using Il2CppScheduleOne.Map;
+#endif
+
 public static class DesertModule
 {
     private static bool desertLoaded = false;
@@ -329,11 +335,11 @@ public static class DesertModule
         if (originPoint == null) MelonLogger.Warning($"{tag} 'Map/OriginPoint' not found.");
 
         // Use IL2CPP generic overloads to avoid System.Type vs Il2CppSystem.Type mismatch
-        Il2CppScheduleOne.Map.MapPositionUtility mpu = null;
+        MapPositionUtility mpu = null;
         try
         {
-            mpu = mmap.GetComponent<Il2CppScheduleOne.Map.MapPositionUtility>()
-               ?? mmap.AddComponent<Il2CppScheduleOne.Map.MapPositionUtility>();
+            mpu = mmap.GetComponent<MapPositionUtility>()
+               ?? mmap.AddComponent<MapPositionUtility>();
         }
         catch (System.Exception ex)
         {
@@ -348,7 +354,7 @@ public static class DesertModule
 
         // Set conversion factor on instance property if available (float or double)
         bool setInstanceProp = false;
-        var t = typeof(Il2CppScheduleOne.Map.MapPositionUtility);
+        var t = typeof(MapPositionUtility);
         try
         {
             var p = t.GetProperty("conversionFactor", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Static);

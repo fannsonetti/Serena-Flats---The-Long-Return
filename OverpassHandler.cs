@@ -2,8 +2,11 @@ using System.Collections;
 using MelonLoader;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Il2CppInterop.Runtime.Injection;
 using Object = UnityEngine.Object;
+
+#if IL2CPP
+using Il2CppInterop.Runtime.Injection;
+#endif
 
 public static class OverpassModule
 {
@@ -51,7 +54,9 @@ public static class OverpassModule
         overpassCategory = MelonPreferences.CreateCategory("OverpassModule");
         debugEnabled = overpassCategory.CreateEntry("Debug", false, "Enable debug rendering (show RC/trigger cubes)");
 
+#if IL2CPP
         ClassInjector.RegisterTypeInIl2Cpp<TeleportOnTrigger>();
+#endif
         MelonLogger.Msg("[Overpass] Module initialized. Debug rendering = " + debugEnabled.Value);
     }
 
@@ -346,13 +351,17 @@ public static class OverpassModule
     }
 }
 
+#if IL2CPP
 // Il2Cpp MonoBehaviour: teleports *any* collider that enters to a target world position (default 0,0,0)
 [RegisterTypeInIl2Cpp]
+#endif
 public class TeleportOnTrigger : MonoBehaviour
 {
+#if IL2CPP
     public TeleportOnTrigger(System.IntPtr ptr) : base(ptr) { }
     public TeleportOnTrigger() : base(ClassInjector.DerivedConstructorPointer<TeleportOnTrigger>())
     { ClassInjector.DerivedConstructorBody(this); }
+#endif
 
     public Vector3 TargetPosition = Vector3.zero;
     public Quaternion TargetRotation = Quaternion.identity;

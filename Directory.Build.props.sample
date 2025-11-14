@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <!--
+    Local developer overrides for Schedule I install path.
+    How to use on your machine:
+      1) Copy this file to: Directory.Build.props (same folder as this file)
+         Do NOT commit your personal Directory.Build.props.
+      2) Edit ScheduleIGameDir below to point to your local game directory.
+         Example locations:
+           - C:\\Program Files (x86)\\Steam\\steamapps\\common\\Schedule I
+           - D:\\SteamLibrary\\steamapps\\common\\Schedule I
+      3) Alternatively, set an environment variable named SCHEDULE_I_GAME_DIR
+         to the same path; that also works without creating a local props file.
+  -->
+  <PropertyGroup>
+    <!-- Absolute path to your Schedule I game folder -->
+    <ScheduleIGameDir>C:\\Program Files (x86)\\Steam\\steamapps\\common\\Schedule I</ScheduleIGameDir>
+  </PropertyGroup>
+</Project>
